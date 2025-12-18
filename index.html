@@ -427,7 +427,6 @@
                     <i class="fas fa-shopping-basket"></i>
                 </div>
                 <div class="category-name">Grocery & General Store</div>
-                <div class="category-count">254 merchants</div>
             </div>
             
             <div class="category-card" data-category="pharmacy">
@@ -435,7 +434,6 @@
                     <i class="fas fa-pills"></i>
                 </div>
                 <div class="category-name">Pharmacy & Medical</div>
-                <div class="category-count">187 merchants</div>
             </div>
             
             <div class="category-card" data-category="electronics">
@@ -443,7 +441,6 @@
                     <i class="fas fa-laptop"></i>
                 </div>
                 <div class="category-name">Electronics</div>
-                <div class="category-count">142 merchants</div>
             </div>
             
             <div class="category-card" data-category="clothing">
@@ -451,7 +448,6 @@
                     <i class="fas fa-tshirt"></i>
                 </div>
                 <div class="category-name">Clothing & Fashion</div>
-                <div class="category-count">198 merchants</div>
             </div>
             
             <div class="category-card" data-category="restaurant">
@@ -459,7 +455,6 @@
                     <i class="fas fa-utensils"></i>
                 </div>
                 <div class="category-name">Restaurant & Food</div>
-                <div class="category-count">176 merchants</div>
             </div>
             
             <div class="category-card" data-category="hardware">
@@ -467,7 +462,6 @@
                     <i class="fas fa-tools"></i>
                 </div>
                 <div class="category-name">Hardware & Construction</div>
-                <div class="category-count">89 merchants</div>
             </div>
             
             <div class="category-card" data-category="other">
@@ -475,7 +469,6 @@
                     <i class="fas fa-store"></i>
                 </div>
                 <div class="category-name">Other Categories</div>
-                <div class="category-count">112 merchants</div>
             </div>
         </div>
     </div>
@@ -518,23 +511,12 @@
             
             <div class="form-row">
                 <div class="form-group">
-                    <label for="shop-name">Shop Name</label>
-                    <input type="text" id="shop-name" placeholder="Enter shop name">
+                    <label for="shop-name" class="required">Shop Name</label>
+                    <input type="text" id="shop-name" placeholder="Enter shop name" required>
                 </div>
                 <div class="form-group">
-                    <label for="location">Location/Area</label>
-                    <input type="text" id="location" placeholder="Enter shop location">
-                </div>
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="survey-date">Survey Date</label>
-                    <input type="date" id="survey-date" required>
-                </div>
-                <div class="form-group">
-                    <label for="employee-id">Employee ID</label>
-                    <input type="text" id="employee-id" value="ARS-EMP-2024" readonly>
+                    <label for="location" class="required">Location/Area</label>
+                    <input type="text" id="location" placeholder="Enter shop location" required>
                 </div>
             </div>
             
@@ -918,9 +900,6 @@
             });
         });
         
-        // Set default date
-        document.getElementById('survey-date').valueAsDate = new Date();
-        
         // Rating selection
         document.querySelectorAll('.rating-option').forEach(option => {
             option.addEventListener('click', function() {
@@ -968,10 +947,8 @@
             });
             
             // Reset form fields
-            document.getElementById('survey-form').querySelectorAll('input[type="text"], input[type="date"], textarea').forEach(field => {
-                if (field.id !== 'employee-id') {
-                    field.value = '';
-                }
+            document.getElementById('survey-form').querySelectorAll('input[type="text"], textarea').forEach(field => {
+                field.value = '';
             });
             
             // Reset radio buttons
@@ -1016,6 +993,12 @@
                 return;
             }
             
+            const location = document.getElementById('location').value;
+            if (!location) {
+                showToast('Please enter shop location', 'error');
+                return;
+            }
+            
             // Check if at least some questions are answered
             let answeredCount = 0;
             questionIds.forEach(q => {
@@ -1033,9 +1016,7 @@
                 admaaRegistered: admaaRegistered.value,
                 cnic: admaaRegistered.value === 'yes' ? document.getElementById('cnic').value : 'N/A',
                 shopName: shopName,
-                location: document.getElementById('location').value,
-                surveyDate: document.getElementById('survey-date').value,
-                employeeId: document.getElementById('employee-id').value,
+                location: location,
                 timestamp: new Date().toISOString(),
                 ...surveyData
             };
@@ -1047,38 +1028,12 @@
             });
             submissionData.totalScore = totalScore;
             
-            // Calculate section scores
-            submissionData.section1Score = 0;
-            for (let i = 1; i <= 9; i++) {
-                submissionData.section1Score += surveyData[`q${i}`] || 0;
-            }
-            
-            submissionData.section2Score = 0;
-            for (let i = 10; i <= 12; i++) {
-                submissionData.section2Score += surveyData[`q${i}`] || 0;
-            }
-            
-            submissionData.section3Score = 0;
-            for (let i = 13; i <= 16; i++) {
-                submissionData.section3Score += surveyData[`q${i}`] || 0;
-            }
-            
-            submissionData.section4Score = 0;
-            for (let i = 17; i <= 19; i++) {
-                submissionData.section4Score += surveyData[`q${i}`] || 0;
-            }
-            
-            submissionData.section5Score = 0;
-            for (let i = 20; i <= 21; i++) {
-                submissionData.section5Score += surveyData[`q${i}`] || 0;
-            }
-            
             // Show loading state
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
             this.disabled = true;
             
-            // Send to n8n webhook (Update URL with your n8n webhook)
-            const webhookUrl = 'https://noral.gleeze.com/webhook-test/survey';
+            // Send to webhook (CHANGE THIS URL)
+            const webhookUrl = 'https://noral.gleeze.com/webhook-test/survey'; // Change to your survey webhook
             
             fetch(webhookUrl, {
                 method: 'POST',
@@ -1089,7 +1044,7 @@
             })
             .then(response => {
                 if (response.ok) {
-                    showToast('Survey submitted successfully! Data sent to Google Sheets.', 'success');
+                    showToast('Survey submitted successfully!', 'success');
                     
                     // Reset and go back to category selection
                     setTimeout(() => {
@@ -1110,13 +1065,6 @@
                 this.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Survey';
                 this.disabled = false;
                 console.error('Error:', error);
-                
-                // For demo purposes
-                setTimeout(() => {
-                    showToast('Survey submitted successfully! (Demo Mode)', 'success');
-                    this.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Survey';
-                    this.disabled = false;
-                }, 1000);
             });
         });
         
