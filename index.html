@@ -15,28 +15,12 @@
         }
         
         body {
-            background-image: url('background.png');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
+            background-color: #ffffff;
             color: #333;
             line-height: 1.6;
             padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            min-height: 100vh;
-        }
-        
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.92);
-            z-index: -1;
         }
         
         .header {
@@ -98,7 +82,9 @@
         }
         
         .category-card {
-            background: white;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
             border-radius: 10px;
             padding: 25px 15px;
             text-align: center;
@@ -108,6 +94,27 @@
             border: 2px solid #d32f2f;
             position: relative;
             overflow: hidden;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.7);
+            z-index: 1;
+        }
+        
+        .category-card > * {
+            position: relative;
+            z-index: 2;
         }
         
         .category-card:hover {
@@ -118,8 +125,11 @@
         
         .category-card.selected {
             border-color: #388e3c;
-            background-color: #f1f8e9;
             border-width: 3px;
+        }
+        
+        .category-card.selected::before {
+            background: rgba(241, 248, 233, 0.8);
         }
         
         .category-icon {
@@ -188,8 +198,30 @@
         
         .form-section {
             margin-bottom: 30px;
-            padding-bottom: 25px;
-            border-bottom: 2px solid #c8e6c9;
+            padding: 20px;
+            border: 2px solid #388e3c;
+            border-radius: 10px;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 8px;
+            z-index: 1;
+        }
+        
+        .form-section > * {
+            position: relative;
+            z-index: 2;
         }
         
         .section-title {
@@ -212,7 +244,7 @@
             padding: 15px;
             border-radius: 8px;
             border: 1px solid #c8e6c9;
-            background: #f9fdf8;
+            background: rgba(255, 255, 255, 0.9);
         }
         
         .question-text {
@@ -283,12 +315,32 @@
         }
         
         .admaa-check {
-            background-color: #f1f8e9;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 30px;
             border: 2px solid #388e3c;
             border-left: 5px solid #d32f2f;
+            position: relative;
+        }
+        
+        .admaa-check::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(241, 248, 233, 0.9);
+            border-radius: 8px;
+            z-index: 1;
+        }
+        
+        .admaa-check > * {
+            position: relative;
+            z-index: 2;
         }
         
         .check-question {
@@ -313,6 +365,7 @@
             border: 1px solid #c8e6c9;
             flex: 1;
             transition: all 0.3s;
+            background: white;
         }
         
         .radio-option:hover {
@@ -360,7 +413,7 @@
             border: 2px solid #c8e6c9;
             border-radius: 8px;
             font-size: 1rem;
-            background-color: #f9fdf8;
+            background-color: white;
             transition: all 0.3s;
         }
         
@@ -368,7 +421,6 @@
             outline: none;
             border-color: #d32f2f;
             box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
-            background-color: white;
         }
         
         .buttons {
@@ -611,7 +663,7 @@
                 </div>
             </div>
             
-            <!-- Section 1: Customer & Sales Insights -->
+            <!-- Section 1: Customer & Sales Insights (9 questions) -->
             <div class="form-section">
                 <h3 class="section-title">
                     <i class="fas fa-users"></i> Section 1: Customer & Sales Insights
@@ -644,12 +696,274 @@
                     </div>
                 </div>
                 
-                <!-- Questions 2-21 would continue here -->
-                <!-- For brevity, I'll show structure for remaining questions -->
+                <!-- Question 2 -->
+                <div class="question-group">
+                    <div class="question-text">2. During difficult periods (e.g., shortages, strikes, weather), does the shop remain operational?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q2" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Never Open</div></div>
+                        <div class="rating-option" data-question="q2" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Rarely Open</div></div>
+                        <div class="rating-option" data-question="q2" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Sometimes Open</div></div>
+                        <div class="rating-option" data-question="q2" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Usually Open</div></div>
+                        <div class="rating-option" data-question="q2" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Always Open</div></div>
+                    </div>
+                </div>
                 
+                <!-- Question 3 -->
+                <div class="question-group">
+                    <div class="question-text">3. What percentage of customers are regulars?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q3" data-value="1"><div class="rating-circle">1</div><div class="rating-label">&lt;20%</div></div>
+                        <div class="rating-option" data-question="q3" data-value="2"><div class="rating-circle">2</div><div class="rating-label">20-40%</div></div>
+                        <div class="rating-option" data-question="q3" data-value="3"><div class="rating-circle">3</div><div class="rating-label">40-60%</div></div>
+                        <div class="rating-option" data-question="q3" data-value="4"><div class="rating-circle">4</div><div class="rating-label">60-80%</div></div>
+                        <div class="rating-option" data-question="q3" data-value="5"><div class="rating-circle">5</div><div class="rating-label">&gt;80%</div></div>
+                    </div>
+                </div>
+                
+                <!-- Question 4 -->
+                <div class="question-group">
+                    <div class="question-text">4. How often do customers ask for stuff that is not available?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q4" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Very Rarely</div></div>
+                        <div class="rating-option" data-question="q4" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Rarely</div></div>
+                        <div class="rating-option" data-question="q4" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Sometimes</div></div>
+                        <div class="rating-option" data-question="q4" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Often</div></div>
+                        <div class="rating-option" data-question="q4" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Very Often</div></div>
+                    </div>
+                </div>
+                
+                <!-- Question 5 -->
+                <div class="question-group">
+                    <div class="question-text">5. Do you accept returns or exchanges?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q5" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Never</div></div>
+                        <div class="rating-option" data-question="q5" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Rarely</div></div>
+                        <div class="rating-option" data-question="q5" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Sometimes</div></div>
+                        <div class="rating-option" data-question="q5" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Usually</div></div>
+                        <div class="rating-option" data-question="q5" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Always</div></div>
+                    </div>
+                </div>
+                
+                <!-- Question 6 -->
+                <div class="question-group">
+                    <div class="question-text">6. How would you rate your staff's behavior in handling customers?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q6" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Very Poor</div></div>
+                        <div class="rating-option" data-question="q6" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Poor</div></div>
+                        <div class="rating-option" data-question="q6" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Average</div></div>
+                        <div class="rating-option" data-question="q6" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Good</div></div>
+                        <div class="rating-option" data-question="q6" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Excellent</div></div>
+                    </div>
+                </div>
+                
+                <!-- Question 7 -->
+                <div class="question-group">
+                    <div class="question-text">7. Has the merchant faced repeated customer conflicts?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q7" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Very Often</div></div>
+                        <div class="rating-option" data-question="q7" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Often</div></div>
+                        <div class="rating-option" data-question="q7" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Sometimes</div></div>
+                        <div class="rating-option" data-question="q7" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Rarely</div></div>
+                        <div class="rating-option" data-question="q7" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Never</div></div>
+                    </div>
+                </div>
+                
+                <!-- Question 8 -->
+                <div class="question-group">
+                    <div class="question-text">8. Do customers leave dissatisfied or frustrated?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q8" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Very Often</div></div>
+                        <div class="rating-option" data-question="q8" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Often</div></div>
+                        <div class="rating-option" data-question="q8" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Sometimes</div></div>
+                        <div class="rating-option" data-question="q8" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Rarely</div></div>
+                        <div class="rating-option" data-question="q8" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Never</div></div>
+                    </div>
+                </div>
+                
+                <!-- Question 9 -->
+                <div class="question-group">
+                    <div class="question-text">9. Are disputes common during payments or returns?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q9" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Very Common</div></div>
+                        <div class="rating-option" data-question="q9" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Common</div></div>
+                        <div class="rating-option" data-question="q9" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Sometimes</div></div>
+                        <div class="rating-option" data-question="q9" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Rare</div></div>
+                        <div class="rating-option" data-question="q9" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Very Rare</div></div>
+                    </div>
+                </div>
             </div>
             
-            <!-- Continue with other sections -->
+            <!-- Section 2: Inventory & Operations (3 questions) -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <i class="fas fa-boxes"></i> Section 2: Inventory & Operations
+                </h3>
+                
+                <!-- Question 10 -->
+                <div class="question-group">
+                    <div class="question-text">10. How frequently is your inventory updated?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q10" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Rarely</div></div>
+                        <div class="rating-option" data-question="q10" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Monthly</div></div>
+                        <div class="rating-option" data-question="q10" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Bi-Weekly</div></div>
+                        <div class="rating-option" data-question="q10" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Weekly</div></div>
+                        <div class="rating-option" data-question="q10" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Daily</div></div>
+                    </div>
+                </div>
+                
+                <!-- Question 11 -->
+                <div class="question-group">
+                    <div class="question-text">11. How do you manage your shop inventory? (mobile application or write in a copy)</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q11" data-value="1"><div class="rating-circle">1</div><div class="rating-label">No System</div></div>
+                        <div class="rating-option" data-question="q11" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Memory Only</div></div>
+                        <div class="rating-option" data-question="q11" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Manual Copy</div></div>
+                        <div class="rating-option" data-question="q11" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Basic Software</div></div>
+                        <div class="rating-option" data-question="q11" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Advanced App</div></div>
+                    </div>
+                </div>
+                
+                <!-- Question 12 -->
+                <div class="question-group">
+                    <div class="question-text">12. Are you consistently open and close at your advertised times?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q12" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Never On Time</div></div>
+                        <div class="rating-option" data-question="q12" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Rarely On Time</div></div>
+                        <div class="rating-option" data-question="q12" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Sometimes On Time</div></div>
+                        <div class="rating-option" data-question="q12" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Usually On Time</div></div>
+                        <div class="rating-option" data-question="q12" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Always On Time</div></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 3: Payments & Digital Adoption (4 questions) -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <i class="fas fa-credit-card"></i> Section 3: Payments & Digital Adoption
+                </h3>
+                
+                <!-- Question 13 -->
+                <div class="question-group">
+                    <div class="question-text">13. What is the percentage breakdown of digital payments vs. cash?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q13" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Mostly Cash (&gt;80%)</div></div>
+                        <div class="rating-option" data-question="q13" data-value="2"><div class="rating-circle">2</div><div class="rating-label">70% Cash</div></div>
+                        <div class="rating-option" data-question="q13" data-value="3"><div class="rating-circle">3</div><div class="rating-label">50/50</div></div>
+                        <div class="rating-option" data-question="q13" data-value="4"><div class="rating-circle">4</div><div class="rating-label">70% Digital</div></div>
+                        <div class="rating-option" data-question="q13" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Mostly Digital (&gt;80%)</div></div>
+                    </div>
+                </div>
+                
+                <!-- Question 14 -->
+                <div class="question-group">
+                    <div class="question-text">14. How often is ADMAA QR specifically used for payments?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q14" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Never</div></div>
+                        <div class="rating-option" data-question="q14" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Rarely</div></div>
+                        <div class="rating-option" data-question="q14" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Sometimes</div></div>
+                        <div class="rating-option" data-question="q14" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Often</div></div>
+                        <div class="rating-option" data-question="q14" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Very Often</div></div>
+                    </div>
+                </div>
+                
+                <!-- Question 15 -->
+                <div class="question-group">
+                    <div class="question-text">15. Do you make a record of the sale (note it down)?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q15" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Never</div></div>
+                        <div class="rating-option" data-question="q15" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Rarely</div></div>
+                        <div class="rating-option" data-question="q15" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Sometimes</div></div>
+                        <div class="rating-option" data-question="q15" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Usually</div></div>
+                        <div class="rating-option" data-question="q15" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Always</div></div>
+                    </div>
+                </div>
+                
+                <!-- Question 16 -->
+                <div class="question-group">
+                    <div class="question-text">16. Do you follow official branding/QR display guidelines?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q16" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Not At All</div></div>
+                        <div class="rating-option" data-question="q16" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Poorly</div></div>
+                        <div class="rating-option" data-question="q16" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Somewhat</div></div>
+                        <div class="rating-option" data-question="q16" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Well</div></div>
+                        <div class="rating-option" data-question="q16" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Perfectly</div></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 4: Compliance & Safety (3 questions) -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <i class="fas fa-shield-alt"></i> Section 4: Compliance & Safety
+                </h3>
+                
+                <!-- Question 17 -->
+                <div class="question-group">
+                    <div class="question-text">17. Have your shop ever been in an accident? (Robbery, for example, if yes, how well did you handle it?)</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q17" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Poor Handling</div></div>
+                        <div class="rating-option" data-question="q17" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Below Average</div></div>
+                        <div class="rating-option" data-question="q17" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Average Response</div></div>
+                        <div class="rating-option" data-question="q17" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Well Handled</div></div>
+                        <div class="rating-option" data-question="q17" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Excellent Response</div></div>
+                    </div>
+                </div>
+                
+                <!-- Question 18 -->
+                <div class="question-group">
+                    <div class="question-text">18. Have you ever been penalized or sealed by authorities?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q18" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Multiple Times</div></div>
+                        <div class="rating-option" data-question="q18" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Several Times</div></div>
+                        <div class="rating-option" data-question="q18" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Once or Twice</div></div>
+                        <div class="rating-option" data-question="q18" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Rarely</div></div>
+                        <div class="rating-option" data-question="q18" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Never</div></div>
+                    </div>
+                </div>
+                
+                <!-- Question 19 -->
+                <div class="question-group">
+                    <div class="question-text">19. When a mistake occurs, is it resolved immediately?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q19" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Never Resolved</div></div>
+                        <div class="rating-option" data-question="q19" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Delayed</div></div>
+                        <div class="rating-option" data-question="q19" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Sometimes</div></div>
+                        <div class="rating-option" data-question="q19" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Usually</div></div>
+                        <div class="rating-option" data-question="q19" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Always Immediately</div></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 5: Reputation & Competition (2 questions) -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <i class="fas fa-trophy"></i> Section 5: Reputation & Competition
+                </h3>
+                
+                <!-- Question 20 -->
+                <div class="question-group">
+                    <div class="question-text">20. Do you monitor your Google reviews if your shop is on google or local reputation?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q20" data-value="1"><div class="rating-circle">1</div><div class="rating-label">Never</div></div>
+                        <div class="rating-option" data-question="q20" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Rarely</div></div>
+                        <div class="rating-option" data-question="q20" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Sometimes</div></div>
+                        <div class="rating-option" data-question="q20" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Often</div></div>
+                        <div class="rating-option" data-question="q20" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Actively Monitor</div></div>
+                    </div>
+                </div>
+                
+                <!-- Question 21 -->
+                <div class="question-group">
+                    <div class="question-text">21. In your immediate area, how do you track or analyze what your top 2-3 local competitors are doing?</div>
+                    <div class="rating-container">
+                        <div class="rating-option" data-question="q21" data-value="1"><div class="rating-circle">1</div><div class="rating-label">No Tracking</div></div>
+                        <div class="rating-option" data-question="q21" data-value="2"><div class="rating-circle">2</div><div class="rating-label">Basic Awareness</div></div>
+                        <div class="rating-option" data-question="q21" data-value="3"><div class="rating-circle">3</div><div class="rating-label">Occasional Check</div></div>
+                        <div class="rating-option" data-question="q21" data-value="4"><div class="rating-circle">4</div><div class="rating-label">Regular Monitoring</div></div>
+                        <div class="rating-option" data-question="q21" data-value="5"><div class="rating-circle">5</div><div class="rating-label">Detailed Analysis</div></div>
+                    </div>
+                </div>
+            </div>
             
             <div class="score-display" id="total-score">
                 Total Score: <span id="score-value">0</span>/105
@@ -672,11 +986,11 @@
     </div>
 
     <script>
-        // Same JavaScript code as before, just updating the webhook URL
+        // Same JavaScript as before, just making sure all 21 questions are included
         let selectedCategory = '';
         let surveyData = {};
         
-        // Initialize all question values (21 questions)
+        // Initialize all 21 question values
         const questionIds = [];
         for (let i = 1; i <= 21; i++) {
             questionIds.push(`q${i}`);
@@ -730,7 +1044,7 @@
             });
         });
         
-        // Rating selection
+        // Rating selection for ALL 21 questions
         document.querySelectorAll('.rating-option').forEach(option => {
             option.addEventListener('click', function() {
                 const question = this.getAttribute('data-question');
@@ -766,7 +1080,7 @@
         
         // Reset form
         function resetForm() {
-            // Reset survey data
+            // Reset survey data for all 21 questions
             questionIds.forEach(q => {
                 surveyData[q] = 0;
             });
