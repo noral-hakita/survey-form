@@ -16,6 +16,8 @@
         
         body {
             background-color: #ffffff;
+            /* Optional: You could also add the background to the body if desired */
+            /* background-image: url('background.png'); */
             color: #333;
             line-height: 1.6;
             padding: 20px;
@@ -33,6 +35,7 @@
             text-align: center;
             border: 3px solid #388e3c;
             position: relative;
+            overflow: hidden;
         }
         
         .logo-container {
@@ -41,6 +44,8 @@
             justify-content: center;
             gap: 20px;
             margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
         }
         
         .logo {
@@ -65,6 +70,8 @@
             margin-bottom: 5px;
             color: white;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
         }
         
         .header p {
@@ -72,6 +79,8 @@
             font-size: 1rem;
             color: #ffcc00;
             font-weight: 500;
+            position: relative;
+            z-index: 2;
         }
         
         .category-container {
@@ -110,6 +119,7 @@
             bottom: 0;
             background: rgba(255, 255, 255, 0.7);
             z-index: 1;
+            transition: all 0.3s ease;
         }
         
         .category-card > * {
@@ -129,7 +139,7 @@
         }
         
         .category-card.selected::before {
-            background: rgba(241, 248, 233, 0.8);
+            background: rgba(241, 248, 233, 0.85);
         }
         
         .category-icon {
@@ -152,6 +162,7 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             border: 3px solid #388e3c;
+            position: relative;
         }
         
         .form-header {
@@ -162,6 +173,8 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 3px solid #388e3c;
+            position: relative;
+            z-index: 3;
         }
         
         .form-header h2 {
@@ -194,6 +207,24 @@
             padding: 30px;
             max-height: 70vh;
             overflow-y: auto;
+            position: relative;
+            z-index: 2;
+            /* Added background here for consistency across the whole form area */
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Added overlay for form content readability */
+        .form-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95); /* Very light overlay */
+            z-index: -1; /* Behind the content */
         }
         
         .form-section {
@@ -205,6 +236,7 @@
             background-size: cover;
             background-position: center;
             position: relative;
+            overflow: hidden;
         }
         
         .form-section::before {
@@ -239,13 +271,38 @@
             color: #388e3c;
         }
         
+        /* --- MODIFIED: Question Group now uses the background image --- */
         .question-group {
             margin-bottom: 25px;
             padding: 15px;
             border-radius: 8px;
             border: 1px solid #c8e6c9;
-            background: rgba(255, 255, 255, 0.9);
+            /* Replaced solid background with image and overlay */
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
         }
+
+        /* Added overlay for question group */
+        .question-group::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92); /* High opacity for readability */
+            z-index: 1;
+        }
+
+        /* Ensure content is above overlay */
+        .question-group > * {
+            position: relative;
+            z-index: 2;
+        }
+        /* --------------------------------------------------------- */
         
         .question-text {
             font-weight: 500;
@@ -271,6 +328,7 @@
             flex: 1;
             margin: 0 3px;
             border: 1px solid #ddd;
+            background: rgba(255,255,255,0.8); /* Slight background for options */
         }
         
         .rating-option:hover {
@@ -324,6 +382,7 @@
             border: 2px solid #388e3c;
             border-left: 5px solid #d32f2f;
             position: relative;
+            overflow: hidden;
         }
         
         .admaa-check::before {
@@ -365,7 +424,7 @@
             border: 1px solid #c8e6c9;
             flex: 1;
             transition: all 0.3s;
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
         }
         
         .radio-option:hover {
@@ -376,6 +435,9 @@
         .radio-option input {
             margin-right: 8px;
             accent-color: #d32f2f;
+             width: auto; /* Reset width for radio buttons */
+             box-shadow: none;
+             border: none;
         }
         
         .cnic-field {
@@ -405,22 +467,27 @@
             margin-bottom: 8px;
             font-weight: 600;
             color: #d32f2f;
+            position: relative;
+            z-index: 2;
         }
         
-        input, select, textarea {
+        input[type="text"], select, textarea {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #c8e6c9;
             border-radius: 8px;
             font-size: 1rem;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.95); /* Slight transparency for inputs */
             transition: all 0.3s;
+            position: relative;
+            z-index: 2;
         }
         
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: #d32f2f;
             box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+            background-color: #ffffff;
         }
         
         .buttons {
@@ -429,6 +496,8 @@
             margin-top: 30px;
             padding-top: 20px;
             border-top: 2px solid #c8e6c9;
+            position: relative;
+            z-index: 2;
         }
         
         .btn {
@@ -494,18 +563,38 @@
             transform: translateY(0);
         }
         
+        /* --- MODIFIED: Score Display now uses the background image --- */
         .score-display {
             font-size: 1.3rem;
             font-weight: bold;
             color: #d32f2f;
             text-align: center;
             padding: 15px;
-            background-color: #f1f8e9;
             border-radius: 8px;
             margin-top: 20px;
             display: none;
             border: 2px solid #388e3c;
+            /* Replaced solid background with image and overlay */
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
         }
+
+        /* Added overlay for score display (using a slight green tint) */
+        .score-display::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(241, 248, 233, 0.9); /* Light green overlay */
+            z-index: -1;
+        }
+        /* --------------------------------------------------------- */
         
         .required::after {
             content: " *";
@@ -552,16 +641,15 @@
                 <img src="admaa.png" alt="ADMAA Logo">
             </div>
             <div>
-                <img src="admaalogo.png" alt="ADMAA Retail Enablement Services" style="height: 60px;">
+                 <img src="admaalogo.png" alt="ADMAA Retail Enablement Services" style="height: 60px;">
             </div>
         </div>
         <h1>Merchant Ranking Survey System</h1>
         <p>Complete the survey to rank merchants</p>
     </div>
 
-    <!-- Category Selection Screen -->
     <div id="category-screen">
-        <h2 style="color: #d32f2f; margin-bottom: 20px; text-align: center; border-bottom: 2px solid #388e3c; padding-bottom: 10px;">
+        <h2 style="color: #d32f2f; margin-bottom: 20px; text-align: center; border-bottom: 2px solid #388e3c; padding-bottom: 10px; position: relative; z-index: 2;">
             <i class="fas fa-filter"></i> Select Merchant Category
         </h2>
         <div class="category-container">
@@ -616,7 +704,6 @@
         </div>
     </div>
 
-    <!-- Survey Form (Hidden Initially) -->
     <div class="form-container" id="survey-form">
         <div class="form-header">
             <h2>
@@ -648,7 +735,7 @@
                     <label for="cnic" class="required">Merchant CNIC Number</label>
                     <input type="text" id="cnic" placeholder="Enter 13-digit CNIC (e.g., 42201-1234567-8)" 
                            pattern="\d{5}-\d{7}-\d{1}" title="Format: 42201-1234567-8">
-                    <small style="color: #666;">Enter the registered CNIC for ADMAA QR verification</small>
+                    <small style="color: #666; position: relative; z-index: 2;">Enter the registered CNIC for ADMAA QR verification</small>
                 </div>
             </div>
             
@@ -663,13 +750,11 @@
                 </div>
             </div>
             
-            <!-- Section 1: Customer & Sales Insights (9 questions) -->
             <div class="form-section">
                 <h3 class="section-title">
                     <i class="fas fa-users"></i> Section 1: Customer & Sales Insights
                 </h3>
                 
-                <!-- Question 1 -->
                 <div class="question-group">
                     <div class="question-text">1. What is the average number of customers per day?</div>
                     <div class="rating-container">
@@ -696,7 +781,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 2 -->
                 <div class="question-group">
                     <div class="question-text">2. During difficult periods (e.g., shortages, strikes, weather), does the shop remain operational?</div>
                     <div class="rating-container">
@@ -708,7 +792,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 3 -->
                 <div class="question-group">
                     <div class="question-text">3. What percentage of customers are regulars?</div>
                     <div class="rating-container">
@@ -720,7 +803,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 4 -->
                 <div class="question-group">
                     <div class="question-text">4. How often do customers ask for stuff that is not available?</div>
                     <div class="rating-container">
@@ -732,7 +814,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 5 -->
                 <div class="question-group">
                     <div class="question-text">5. Do you accept returns or exchanges?</div>
                     <div class="rating-container">
@@ -744,7 +825,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 6 -->
                 <div class="question-group">
                     <div class="question-text">6. How would you rate your staff's behavior in handling customers?</div>
                     <div class="rating-container">
@@ -756,7 +836,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 7 -->
                 <div class="question-group">
                     <div class="question-text">7. Has the merchant faced repeated customer conflicts?</div>
                     <div class="rating-container">
@@ -768,7 +847,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 8 -->
                 <div class="question-group">
                     <div class="question-text">8. Do customers leave dissatisfied or frustrated?</div>
                     <div class="rating-container">
@@ -780,7 +858,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 9 -->
                 <div class="question-group">
                     <div class="question-text">9. Are disputes common during payments or returns?</div>
                     <div class="rating-container">
@@ -793,13 +870,11 @@
                 </div>
             </div>
             
-            <!-- Section 2: Inventory & Operations (3 questions) -->
             <div class="form-section">
                 <h3 class="section-title">
                     <i class="fas fa-boxes"></i> Section 2: Inventory & Operations
                 </h3>
                 
-                <!-- Question 10 -->
                 <div class="question-group">
                     <div class="question-text">10. How frequently is your inventory updated?</div>
                     <div class="rating-container">
@@ -811,7 +886,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 11 -->
                 <div class="question-group">
                     <div class="question-text">11. How do you manage your shop inventory? (mobile application or write in a copy)</div>
                     <div class="rating-container">
@@ -823,7 +897,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 12 -->
                 <div class="question-group">
                     <div class="question-text">12. Are you consistently open and close at your advertised times?</div>
                     <div class="rating-container">
@@ -836,13 +909,11 @@
                 </div>
             </div>
             
-            <!-- Section 3: Payments & Digital Adoption (4 questions) -->
             <div class="form-section">
                 <h3 class="section-title">
                     <i class="fas fa-credit-card"></i> Section 3: Payments & Digital Adoption
                 </h3>
                 
-                <!-- Question 13 -->
                 <div class="question-group">
                     <div class="question-text">13. What is the percentage breakdown of digital payments vs. cash?</div>
                     <div class="rating-container">
@@ -854,7 +925,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 14 -->
                 <div class="question-group">
                     <div class="question-text">14. How often is ADMAA QR specifically used for payments?</div>
                     <div class="rating-container">
@@ -866,7 +936,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 15 -->
                 <div class="question-group">
                     <div class="question-text">15. Do you make a record of the sale (note it down)?</div>
                     <div class="rating-container">
@@ -878,7 +947,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 16 -->
                 <div class="question-group">
                     <div class="question-text">16. Do you follow official branding/QR display guidelines?</div>
                     <div class="rating-container">
@@ -891,13 +959,11 @@
                 </div>
             </div>
             
-            <!-- Section 4: Compliance & Safety (3 questions) -->
             <div class="form-section">
                 <h3 class="section-title">
                     <i class="fas fa-shield-alt"></i> Section 4: Compliance & Safety
                 </h3>
                 
-                <!-- Question 17 -->
                 <div class="question-group">
                     <div class="question-text">17. Have your shop ever been in an accident? (Robbery, for example, if yes, how well did you handle it?)</div>
                     <div class="rating-container">
@@ -909,7 +975,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 18 -->
                 <div class="question-group">
                     <div class="question-text">18. Have you ever been penalized or sealed by authorities?</div>
                     <div class="rating-container">
@@ -921,7 +986,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 19 -->
                 <div class="question-group">
                     <div class="question-text">19. When a mistake occurs, is it resolved immediately?</div>
                     <div class="rating-container">
@@ -934,13 +998,11 @@
                 </div>
             </div>
             
-            <!-- Section 5: Reputation & Competition (2 questions) -->
             <div class="form-section">
                 <h3 class="section-title">
                     <i class="fas fa-trophy"></i> Section 5: Reputation & Competition
                 </h3>
                 
-                <!-- Question 20 -->
                 <div class="question-group">
                     <div class="question-text">20. Do you monitor your Google reviews if your shop is on google or local reputation?</div>
                     <div class="rating-container">
@@ -952,7 +1014,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 21 -->
                 <div class="question-group">
                     <div class="question-text">21. In your immediate area, how do you track or analyze what your top 2-3 local competitors are doing?</div>
                     <div class="rating-container">
@@ -966,7 +1027,7 @@
             </div>
             
             <div class="score-display" id="total-score">
-                Total Score: <span id="score-value">0</span>/105
+                <span style="position: relative; z-index: 2;">Total Score: <span id="score-value">0</span>/105</span>
             </div>
             
             <div class="buttons">
